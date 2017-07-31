@@ -6,8 +6,10 @@
  * Time: 08:41
  */
 include("connection.php");
+
 $action = $_GET['action'];
 $num = $_GET['num'];
+
 $con = new Connection();
 $connection = $con->getConnection();
 function select($connection, $num)
@@ -26,7 +28,9 @@ function select($connection, $num)
     echo json_encode($arr);
 }
 
-if ($action == "select") {
-    select($connection,$num);
+if (isset($action) && isset($num)) {
+    if ($action == "select") {
+        select($connection, $num);
+    }
 }
-
+?>
